@@ -22,6 +22,7 @@ $(function() {
          * page?
          */
         it('allFeeds are defined', function() {
+            // checks to see that allFeeds are defined and is not empty.
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -31,6 +32,7 @@ $(function() {
          * and that the URL is not empty.
          */
          it('URLS are defined', function() {
+           // Checks to see if the URLs are defined and is not empty.
             for(let i = 0; i < allFeeds.length; i++) {
               expect(allFeeds[i].url).toBeDefined();
               expect(allFeeds[i].url).not.toBe(0);
@@ -43,6 +45,7 @@ $(function() {
          */
          it('Names are defined', function() {
            for(let i = 0; i < allFeeds.length; i++) {
+             // Checks to see if the names are defined and is not empty.
              expect(allFeeds[i].name).toBeDefined();
              expect(allFeeds[i].name).not.toBe(0);
            }
@@ -57,6 +60,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
           it('Menu is hidden by default', function() {
+            // checks to see if the menu is hidden.
             expect($('body').hasClass('menu-hidden')).toBe(true);
           });
 
@@ -66,10 +70,11 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
           it('Menus are visible', function() {
-            $('.icon-list').trigger('click');
+            // Uses the jqury .click() method. Checks to see if the menu displays when clicked and hides when clicked again.
+            $('.icon-list').click();
             expect($('body').hasClass('menu-hidden')).toBe(false);
 
-            $('.icon-list').trigger('click');
+            $('.icon-list').click();
             expect($('body').hasClass('menu-hidden')).toBe(true);
           });
     });
@@ -89,6 +94,7 @@ $(function() {
          });
 
          it('Should be at least single element after the loadFeed function is called.', function(done) {
+           // checks to see the .feed container has at least 1 children element.
            expect($('.feed').children().length).toBeGreaterThan(0);
            done();
          });
@@ -101,9 +107,25 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
-         /*it('Content changes when a new feed is loaded.', function() {
+         let firstFeed, secondFeed;
 
+         // grabs the html of the first feed and the second feed.
+         beforeEach(function(done) {
+           loadFeed(0, function() {
+             firstFeed = $('.feed').html();
+             done();
+           });
+
+           loadFeed(1,function() {
+             secondFeed = $('.feed').html();
+             done();
+           })
          });
-         */
+
+         it('Content changes when a new feed is loaded.', function(done) {
+           // Compares the first feed and second feed to see if the content changes.
+           expect(firstFeed).not.toBe(secondFeed);
+           done();
+         });
     });
 }());
