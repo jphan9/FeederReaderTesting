@@ -93,8 +93,8 @@ $(function() {
            });
          });
 
-         it('Should be at least single element after the loadFeed function is called.', function(done) {
-           // checks to see the .feed container has at least 1 children element.
+         it('Should be at least single element after the loadFeed function is called', function(done) {
+           // checks to see if the .feed container has at least 1 children element.
            expect($('.feed').children().length).toBeGreaterThan(0);
            done();
          });
@@ -122,7 +122,7 @@ $(function() {
            })
          });
 
-         it('Content changes when a new feed is loaded.', function(done) {
+         it('Content changes when a new feed is loaded', function(done) {
            // Compares the first feed and second feed to see if the content changes.
            expect(firstFeed).not.toBe(secondFeed);
            done();
