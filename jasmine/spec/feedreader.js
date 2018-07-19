@@ -34,7 +34,7 @@ $(function() {
     });
 
     describe('The Menu', function() {
-        // Checks to see if the menu is hidden by dfeault.
+        // Checks to see if the menu is hidden by default.
         it('Menu is hidden by default', function() {
           expect($('body').hasClass('menu-hidden')).toBe(true);
         });
@@ -51,7 +51,7 @@ $(function() {
     });
 
     describe('Initial Entries', function() {
-         // Calls loadFeed() before the tests are preformed.
+         // Calls loadFeed() before the tests are performed.
          beforeEach(function(done) {
            loadFeed(0, function() {
              done();
@@ -68,7 +68,7 @@ $(function() {
     describe('New Feed Selection', function() {
          let firstFeed, secondFeed;
 
-         // Grabs the html of the first feed and the second feed before the test is preformed.
+         // Grabs the html of the first feed and the second feed before the test is performed.
          beforeEach(function(done) {
            loadFeed(0, function() {
              firstFeed = $('.feed').html();
