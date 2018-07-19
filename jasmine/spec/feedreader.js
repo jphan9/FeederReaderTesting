@@ -35,7 +35,7 @@ $(function() {
            // Checks to see if the URLs are defined and is not empty.
             for(let i = 0; i < allFeeds.length; i++) {
               expect(allFeeds[i].url).toBeDefined();
-              expect(allFeeds[i].url).not.toBe(0);
+              expect(allFeeds[i].url.length).toBeGreaterThan(0);
             }
          });
 
@@ -47,7 +47,7 @@ $(function() {
            for(let i = 0; i < allFeeds.length; i++) {
              // Checks to see if the names are defined and is not empty.
              expect(allFeeds[i].name).toBeDefined();
-             expect(allFeeds[i].name).not.toBe(0);
+             expect(allFeeds[i].name.length).toBeGreaterThan(0);
            }
          });
     });
@@ -95,7 +95,7 @@ $(function() {
 
          it('Should be at least single element after the loadFeed function is called', function(done) {
            // checks to see if the .feed container has at least 1 children element.
-           expect($('.feed').children().length).toBeGreaterThan(0);
+           expect($('.feed .entry').length).toBeGreaterThan(0);
            done();
          });
     });
@@ -113,13 +113,11 @@ $(function() {
          beforeEach(function(done) {
            loadFeed(0, function() {
              firstFeed = $('.feed').html();
-             done();
+             loadFeed(1,function() {
+               secondFeed = $('.feed').html();
+               done();
+             });
            });
-
-           loadFeed(1,function() {
-             secondFeed = $('.feed').html();
-             done();
-           })
          });
 
          it('Content changes when a new feed is loaded', function(done) {
